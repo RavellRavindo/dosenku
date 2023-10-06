@@ -15,7 +15,7 @@ export const Home = () => {
     <section>
       <nav className='navbar container'>
           <div className="logo">
-              <h1>DosenKua</h1>
+              <h1>DosenKu</h1>
           </div>
           <div className="navList">
               <div className="button btn-1">
