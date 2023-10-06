@@ -1,0 +1,16 @@
+.text-container{
+    position: relative;
+    height: 6.5rem;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.words{
+    position: relative;
+}
+
+.text-word {
+    font-weight: normal;
+    display: block;
+    transition: 0.5s;
+}
