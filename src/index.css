@@ -30,6 +30,22 @@ body {
     --container-width-sm: 90%;
 }
 
+.primaryBgColor {
+  background-color: #FFCC70;
+}
+
+.primaryColor {
+  color: #FFCC70;
+}
+
+.secondaryBgColor {
+  background-color: #7098FF;
+}
+
+.mainBgColor {
+  background-color: #F8F8F8;
+}
+
 html {
   scroll-behavior: smooth;
 }
