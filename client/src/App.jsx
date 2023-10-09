@@ -1,9 +1,10 @@
 import React from 'react'
 import { Home } from './pages/Home'
 import { BrowserRouter as Router, Routes , Route} from 'react-router-dom'
-import { Signup } from './pages/auth/Signup'
-import { Login } from './pages/auth/Login'
-import { ResetPwd } from './pages/auth/ResetPwd'
+import { Signup } from './pages/Signup'
+import { Login } from './pages/Login'
+import { ResetPassword } from './pages/ResetPassword'
+import ResetConfirmation from './pages/ResetConfirmation'
 
 export const App = () => {
   return (
@@ -12,7 +13,8 @@ export const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/resetpwd" element={<ResetPwd />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/resetconfirmation" element={<ResetConfirmation />} />
       </Routes>
     </Router>
   )

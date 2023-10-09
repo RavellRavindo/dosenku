@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const ResetPwd = () => {
+export const ResetPassword = () => {
 
   return (
         <div className="w-full h-screen px-80 py-32 mainBgColor">
@@ -15,7 +16,7 @@ export const ResetPwd = () => {
               {/* <label className='font-semibold text-white text-left' htmlFor="">Email</label> */}
               <input type="text" placeholder='Email' className="block w-full rounded-md border-0 py-3 pl-4 pr-10 ring-1 ring-black mt-2" />
               <button className="w-full text-white py-3 px-4 mt-6 rounded-md ring-1 ring-black primaryBgColor">
-                Reset Password
+                <Link to={'/resetconfirmation'}>Reset Password</Link>
               </button>
             </div>
           </div>
@@ -23,4 +24,4 @@ export const ResetPwd = () => {
   )
 }
 
-export default ResetPwd
+export default ResetPassword

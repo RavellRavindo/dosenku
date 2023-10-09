@@ -15,7 +15,7 @@ export const Text = () => {
             wrapperRef.current.style.top = '0px'
             setWords([ ...firstElem.concat(copyWords) ])
         },3000)
-
+        
         wrapperRef.current.style.transition = '0.5s';
     }
 

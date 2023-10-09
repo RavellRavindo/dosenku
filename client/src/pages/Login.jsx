@@ -55,7 +55,7 @@ export const Login = () => {
               <button className="font-semibold py-3 px-4 mt-8 rounded-md ring-1 ring-black primaryBgColor">
                 Login
               </button>
-              <h1 className="font-semibold place-self-center pt-6"><span className='primaryColor'> <Link to={'/resetpwd'}>Forgot Password?</Link></span> </h1>
+              <h1 className="font-semibold place-self-center pt-6"><span className='primaryColor'> <Link to={'/resetpassword'}>Forgot Password?</Link></span> </h1>
             </form>
           </div>
         </div>
