@@ -5,6 +5,8 @@ import { Signup } from './pages/Signup'
 import { Login } from './pages/Login'
 import { ResetPassword } from './pages/ResetPassword'
 import ResetConfirmation from './pages/ResetConfirmation'
+import Verify from './pages/Verfify'
+import LecturerProfile from './pages/LecturerProfile'
 
 export const App = () => {
   return (
@@ -15,6 +17,8 @@ export const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/resetconfirmation" element={<ResetConfirmation />} />
+        <Route path="/verify" element={<Verify />} />
+        <Route path="/lecturerprofile" element={<LecturerProfile />} />
       </Routes>
     </Router>
   )

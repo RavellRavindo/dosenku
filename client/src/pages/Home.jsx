@@ -35,13 +35,13 @@ export const Home = () => {
               <h4><span>We'll</span> help you find any Lecturer <br/>
               Here</h4>
               <div className="searchContainer">
-                  {/* <form className='searchBar'>
+                  <form className='searchBar'>
                       <input type="text" placeholder=' Type a lecturer name...' value={input}
                       onChange={(e) => {
                           setInput(e.target.value);
                           
                       }}/>
-                  </form> */}
+                  </form>
                   <button className='button btn-2'><p>Find Now</p></button>
               </div>
           </div>

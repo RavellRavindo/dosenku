@@ -11,12 +11,12 @@ export const Text = () => {
         setTimeout(() => {
             const copyWords = [ ...words ];
             const firstElem = copyWords.splice(1)
-            wrapperRef.current.style.transition = 'none';
-            wrapperRef.current.style.top = '0px'
+            // wrapperRef.current.style.transition = 'none';
+            // wrapperRef.current.style.top = '0px'
             setWords([ ...firstElem.concat(copyWords) ])
         },3000)
         
-        wrapperRef.current.style.transition = '0.5s';
+        // wrapperRef.current.style.transition = '0.5s';
     }
 
     useEffect(() => {
