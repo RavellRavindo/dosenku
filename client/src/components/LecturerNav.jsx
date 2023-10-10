@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [{ name: "DosenKu", href: "#", current: true }];
 
@@ -45,9 +45,9 @@ export const LecturerNav = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center border rounded-lg mr-20 sm:mr-0">
+              <div className="flex items-center border rounded-lg mr-10 sm:mr-0">
                 <input
-                  className="px-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-100 "
+                  className="px-4 py-2 rounded-lg focus:outline-none focus:ring w-5/6 sm:w-full"
                   type="text"
                   placeholder="Search..."
                 />
