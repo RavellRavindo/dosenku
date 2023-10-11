@@ -7,7 +7,9 @@ const ContentSwitcher = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [newButtonName, setNewButtonName] = useState("");
   const [newContent, setNewContent] = useState("");
-  const [buttons, setButtons] = useState([]);
+  const [data, setData] = useState({
+    buttons: [],
+  });
 
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -16,39 +18,47 @@ const ContentSwitcher = () => {
     setContent(newValue);
   };
 
-  const buttonClicked = (i) => {
-    setActiveButton(i);
-    contentValue(newContent);
+  const buttonClicked = (buttonKey) => {
+    setActiveButton(buttonKey); // Set the key of the active button
+    // Find the content of the selected button based on the key
+    const selectedButton = data.buttons.find((button) => button.key === buttonKey);
+    contentValue(selectedButton ? selectedButton.content : "Default Content");
   };
+  
+  // const buttonClicked = (i) => {
+  //   setActiveButton(i);
+  //   contentValue(newContent);
+  //   console.log(i);
+  // };
 
   const increaseButton = () => {
     setOpenModal(true);
   };
 
-  const deleteButton = () => {
-    if (buttonCount > 0) {
-      const updatedButtons = buttons.slice(0, -1);
-      setButtons(updatedButtons);
-      setButtonCount(buttonCount - 1);
+  // const deleteButton = () => {
+  //   if (buttonCount > 0) {
+  //     const updatedButtons = buttons.slice(0, -1);
+  //     setButtons(updatedButtons);
+  //     setButtonCount(buttonCount - 1);
 
-      if (activeButton === buttonCount - 1) {
-        setActiveButton(null);
-        contentValue("Default Content");
-      }
-    }
-  };
-
-  //   const deleteButton = () => {
-  //     if (buttonCount > 0 && activeButton !== null) {
-  //       const updatedButtons = buttons.filter(
-  //         (button, index) => index !== activeButton
-  //       );
-  //       setButtons(updatedButtons);
-  //       setButtonCount(buttonCount - 1);
+  //     if (activeButton === buttonCount - 1) {
   //       setActiveButton(null);
   //       contentValue("Default Content");
   //     }
-  //   };
+  //   }
+  // };
+
+  const deleteButton = () => {
+    if (buttonCount > 0 && activeButton !== null) {
+      const updatedButtons = data.buttons.filter(
+        (button, index) => index !== activeButton
+      );
+      setData({ ...data, buttons: updatedButtons });
+      setButtonCount(buttonCount - 1);
+      setActiveButton(null);
+      contentValue("Default Content");
+    }
+  };
 
   const addNewButton = () => {
     if (newButtonName) {
@@ -56,8 +66,7 @@ const ContentSwitcher = () => {
       contentValue("Default Content");
       setActiveButton(null);
 
-      setButtons((prevButtons) => [
-        ...prevButtons,
+      const newButton = (
         <button
           key={buttonCount}
           onClick={() => buttonClicked(buttonCount)}
@@ -68,10 +77,11 @@ const ContentSwitcher = () => {
           }`}
         >
           {newButtonName}
-        </button>,
-      ]);
-      setNewButtonName("");
+        </button>
+      );
 
+      setData({ ...data, buttons: [...data.buttons, newButton] });
+      setNewButtonName("");
       setOpenModal(false);
     }
   };
@@ -84,7 +94,7 @@ const ContentSwitcher = () => {
   return (
     <div className="px-28">
       <div className="w-full pb-8">
-        {buttons}
+        {data.buttons}
         <button
           className="py-2 px-3.5 rounded-3xl ring-1 ring-black primaryBgColor mx-4"
           onClick={increaseButton}
