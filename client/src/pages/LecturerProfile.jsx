@@ -2,6 +2,7 @@ import React from "react";
 import LecturerNav from "../components/LecturerNav";
 import LecturerBg from "../components/LecturerBg";
 import ContentSwitcher from "../components/ContentSwitcher";
+import Footer from "../components/Footer";
 
 const LecturerProfile = () => {
   return (
@@ -9,6 +10,7 @@ const LecturerProfile = () => {
       <LecturerNav />
       <LecturerBg />
       <ContentSwitcher />
+      <Footer />
     </>
   );
 };

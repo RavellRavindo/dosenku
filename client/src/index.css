@@ -4,7 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
@@ -52,6 +51,14 @@ body {
 
 .defaultButton {
   background-color: white;
+}
+
+.button {
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.button.active-button {
+  background-color: #FFCC70;
 }
 
 html {
@@ -148,10 +155,6 @@ span{
 .carouselContainer{
   padding: 0rem 6rem;
 }
-/* 
-.carouselContainer h1{
-  font-weight: normal;
-} */
 
 .flexRow{
   margin-top: 3rem;    

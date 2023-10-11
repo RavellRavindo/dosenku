@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 
 const ContentSwitcher = () => {
@@ -34,6 +34,7 @@ const ContentSwitcher = () => {
     } else {
       contentValue("Default Content");
     }
+    console.log(buttonKey);
   };
 
   const increaseButton = () => {
@@ -52,7 +53,7 @@ const ContentSwitcher = () => {
       contentValue("Default Content");
 
       const newButton = {
-        key: buttonCount,
+        key: buttonCount + 1,
         buttonName: newButtonName,
         content: newContent,
       };
@@ -92,41 +93,53 @@ const ContentSwitcher = () => {
     setOpenEditModal(false);
   };
 
+  useEffect(() => {
+    setData({
+      buttons: [
+        {
+          key: 0,
+          buttonName: "About Me",
+          content: "",
+        },
+      ],
+    });
+  }, []);
+
   return (
-    <div className="px-28">
-      <div className="w-full pb-8">
+    <div className="px-4 sm:px-28">
+      <div className="w-full pb-4 sm:pb-8">
         {data.buttons.map((button) => (
           <button
             key={button.key}
             onClick={() => buttonClicked(button.key)}
-            className={`w-1/12 py-3 px-4 mx-2 rounded-md ring-1 ring-black ${
-              activeButton === button.key ? "primaryBgColor" : ""
+            className={`w-1/3 sm:w-1/12 py-2 sm:py-3 px-3 sm:px-4 m-1 sm:m-2 rounded-md ring-1 ring-black button ${
+              activeButton === button.key ? "active-button" : ""
             }`}
           >
             {button.buttonName}
           </button>
         ))}
         <button
-          className="py-2 px-3.5 rounded-3xl ring-1 ring-black primaryBgColor mx-4"
+          className="py-2 px-4 rounded-3xl ring-1 ring-black primaryBgColor mx-2 sm:mx-4"
           onClick={increaseButton}
         >
           {" "}
           +{" "}
         </button>
         <button
-          className="py-2 px-3.5 rounded-3xl ring-1 ring-black primaryBgColor mr-4"
+          className="py-2 px-4 rounded-3xl ring-1 ring-black primaryBgColor mr-2 sm:mr-4"
           onClick={deleteButtonConfirmation}
         >
           {" "}
           -{" "}
         </button>
       </div>
-      <div className="p-4 bg-gray-200 rounded-lg">
-        <p>{content}</p>
+      <div className="p-2 sm:p-4 bg-gray-200 rounded-lg">
+        <p className="text-sm sm:text-base">{content}</p>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <button
             onClick={() => setOpenEditModal(true)}
-            className="px-4 py-2 text-white secondaryBgColor rounded-md ml-2 hover:ring-1 ring-orange-300"
+            className="px-2 sm:px-4 py-2 text-white secondaryBgColor rounded-md m-1 sm:m-2 hover:ring-1 ring-orange-300"
           >
             Edit
           </button>
