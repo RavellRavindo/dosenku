@@ -12,6 +12,7 @@ const ContentSwitcher = () => {
   });
 
   const [openModal, setOpenModal] = useState(false);
+  const [OpenDeleteModal, setOpenDeleteModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
 
   const contentValue = (newValue) => {
@@ -19,44 +20,29 @@ const ContentSwitcher = () => {
   };
 
   const buttonClicked = (buttonKey) => {
-    setActiveButton(buttonKey); // Set the key of the active button
-    // Find the content of the selected button based on the key
-    const selectedButton = data.buttons.find((button) => button.key === buttonKey);
-    contentValue(selectedButton ? selectedButton.content : "Default Content");
+    setActiveButton(buttonKey);
+    const selectedButton = data.buttons.find(
+      (button) => button.key === buttonKey
+    );
+
+    if (selectedButton) {
+      if (selectedButton.editedContent) {
+        contentValue(selectedButton.editedContent);
+      } else {
+        contentValue(selectedButton.content);
+      }
+    } else {
+      contentValue("Default Content");
+    }
   };
-  
-  // const buttonClicked = (i) => {
-  //   setActiveButton(i);
-  //   contentValue(newContent);
-  //   console.log(i);
-  // };
 
   const increaseButton = () => {
     setOpenModal(true);
   };
 
-  // const deleteButton = () => {
-  //   if (buttonCount > 0) {
-  //     const updatedButtons = buttons.slice(0, -1);
-  //     setButtons(updatedButtons);
-  //     setButtonCount(buttonCount - 1);
-
-  //     if (activeButton === buttonCount - 1) {
-  //       setActiveButton(null);
-  //       contentValue("Default Content");
-  //     }
-  //   }
-  // };
-
-  const deleteButton = () => {
-    if (buttonCount > 0 && activeButton !== null) {
-      const updatedButtons = data.buttons.filter(
-        (button, index) => index !== activeButton
-      );
-      setData({ ...data, buttons: updatedButtons });
-      setButtonCount(buttonCount - 1);
-      setActiveButton(null);
-      contentValue("Default Content");
+  const deleteButtonConfirmation = () => {
+    if (activeButton !== null) {
+      setOpenDeleteModal(true);
     }
   };
 
@@ -64,37 +50,62 @@ const ContentSwitcher = () => {
     if (newButtonName) {
       setButtonCount(buttonCount + 1);
       contentValue("Default Content");
-      setActiveButton(null);
 
-      const newButton = (
-        <button
-          key={buttonCount}
-          onClick={() => buttonClicked(buttonCount)}
-          className={`w-1/12 py-3 px-4 mx-2 rounded-md ring-1 ring-black ${
-            activeButton !== null && activeButton === buttonCount
-              ? "primaryBgColor"
-              : ""
-          }`}
-        >
-          {newButtonName}
-        </button>
-      );
+      const newButton = {
+        key: buttonCount,
+        buttonName: newButtonName,
+        content: newContent,
+      };
 
       setData({ ...data, buttons: [...data.buttons, newButton] });
       setNewButtonName("");
+      setNewContent("");
       setOpenModal(false);
     }
   };
 
+  const deleteButton = () => {
+    if (buttonCount > 0 && activeButton !== null) {
+      const updatedButtons = data.buttons.filter(
+        (button) => button.key !== activeButton
+      );
+      setData({ ...data, buttons: updatedButtons });
+      setButtonCount(buttonCount - 1);
+      setActiveButton(null);
+      contentValue("Default Content");
+      deleteButtonConfirmation();
+      setOpenDeleteModal(false);
+    }
+  };
+
   const editContent = () => {
-    contentValue(newContent);
+    // contentValue(newContent);
+    const updatedButtons = data.buttons.map((button) => {
+      if (button.key === activeButton) {
+        return { ...button, editedContent: newContent };
+      }
+      return button;
+    });
+
+    setData({ ...data, buttons: updatedButtons });
+    setContent(newContent);
     setOpenEditModal(false);
   };
 
   return (
     <div className="px-28">
       <div className="w-full pb-8">
-        {data.buttons}
+        {data.buttons.map((button) => (
+          <button
+            key={button.key}
+            onClick={() => buttonClicked(button.key)}
+            className={`w-1/12 py-3 px-4 mx-2 rounded-md ring-1 ring-black ${
+              activeButton === button.key ? "primaryBgColor" : ""
+            }`}
+          >
+            {button.buttonName}
+          </button>
+        ))}
         <button
           className="py-2 px-3.5 rounded-3xl ring-1 ring-black primaryBgColor mx-4"
           onClick={increaseButton}
@@ -104,7 +115,7 @@ const ContentSwitcher = () => {
         </button>
         <button
           className="py-2 px-3.5 rounded-3xl ring-1 ring-black primaryBgColor mr-4"
-          onClick={deleteButton}
+          onClick={deleteButtonConfirmation}
         >
           {" "}
           -{" "}
@@ -185,6 +196,34 @@ const ContentSwitcher = () => {
               </button>
               <button
                 onClick={() => setOpenEditModal(false)}
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-400 hover:ring-1 ring-gray-700"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={OpenDeleteModal}
+        onRequestClose={() => setOpenDeleteModal(false)}
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        <div className="fixed inset-0 flex items-center justify-center">
+          <div className="sm:w-full w-auto max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-lg font-semibold mb-4">Confirm Deletion</h2>
+            <p>Are you sure you want to delete this button?</p>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={deleteButton}
+                className="px-4 py-2 primaryBgColor rounded-md hover:ring-1 ring-orange-300"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => setOpenDeleteModal(false)}
                 className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-400 hover:ring-1 ring-gray-700"
               >
                 Cancel
