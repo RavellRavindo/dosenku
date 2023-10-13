@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
+import DeleteModal from "./Modal/DeleteModal";
+import EditModal from "./Modal/EditModal";
+import AddModal from "./Modal/AddModal";
 
 const ContentSwitcher = () => {
   const [content, setContent] = useState("Default Content");
@@ -145,106 +147,29 @@ const ContentSwitcher = () => {
           </button>
         </div>
       </div>
-      <Modal
+      <AddModal
         isOpen={openModal}
-        onRequestClose={() => setOpenModal(false)}
-        className="modal"
-        overlayClassName="modal-overlay"
-      >
-        <div className="fixed inset-0 flex items-center justify-center">
-          <div className="sm:w-full w-auto max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Enter New Content</h2>
-            <input
-              type="text"
-              value={newButtonName}
-              onChange={(e) => setNewButtonName(e.target.value)}
-              placeholder="Button Name"
-              className="w-full px-3 py-2 border rounded-md outline-none ring-1 ring-orange-300 focus:ring"
-            />
-            <textarea
-              value={newContent}
-              onChange={(e) => setNewContent(e.target.value)}
-              placeholder="Content..."
-              className="w-full px-3 py-2 border rounded-md outline-none focus:ring mt-4 ring-1 ring-orange-300"
-            />
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={addNewButton}
-                className="px-4 py-2 primaryBgColor rounded-md hover:ring-1 ring-orange-300"
-              >
-                Add
-              </button>
-              <button
-                onClick={() => setOpenModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-400 hover:ring-1 ring-gray-700"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal>
+        onClose={() => setOpenModal(false)}
+        onAddNewButton={addNewButton}
+        newButtonName={newButtonName}
+        onNewButtonNameChange={(e) => setNewButtonName(e.target.value)}
+        newContent={newContent}
+        onNewContentChange={(e) => setNewContent(e.target.value)}
+      />
 
-      <Modal
+      <EditModal
         isOpen={openEditModal}
-        onRequestClose={() => setOpenEditModal(false)}
-        className="modal"
-        overlayClassName="modal-overlay"
-      >
-        <div className="fixed inset-0 flex items-center justify-center">
-          <div className="sm:w-full w-auto max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Edit your Content</h2>
-            <textarea
-              value={newContent}
-              onChange={(e) => setNewContent(e.target.value)}
-              placeholder="Content..."
-              className="w-full px-3 py-2 border rounded-md outline-none focus:ring mt-4 ring-1 ring-orange-300"
-            />
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={editContent}
-                className="px-4 py-2 primaryBgColor rounded-md hover:ring-1 ring-orange-300"
-              >
-                Save
-              </button>
-              <button
-                onClick={() => setOpenEditModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-400 hover:ring-1 ring-gray-700"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal>
-
-      <Modal
+        onClose={() => setOpenEditModal(false)}
+        onSaveEdit={editContent}
+        newContent={newContent}
+        onNewContentChange={(e) => setNewContent(e.target.value)}
+      />
+      
+      <DeleteModal
         isOpen={OpenDeleteModal}
-        onRequestClose={() => setOpenDeleteModal(false)}
-        className="modal"
-        overlayClassName="modal-overlay"
-      >
-        <div className="fixed inset-0 flex items-center justify-center">
-          <div className="sm:w-full w-auto max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Confirm Deletion</h2>
-            <p>Are you sure you want to delete this button?</p>
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={deleteButton}
-                className="px-4 py-2 primaryBgColor rounded-md hover:ring-1 ring-orange-300"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => setOpenDeleteModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2 hover:bg-gray-400 hover:ring-1 ring-gray-700"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal>
+        onClose={() => setOpenDeleteModal(false)}
+        onDeleteButton={deleteButton}
+      />
     </div>
   );
 };
