@@ -136,6 +136,7 @@ const ContentSwitcher = () => {
           -{" "}
         </button>
       </div>
+     
       <div className="p-2 sm:p-4 bg-gray-200 rounded-lg">
         <p className="text-sm sm:text-base">{content}</p>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
