@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap');
 
@@ -60,6 +60,11 @@ body {
 .button.active-button {
   background-color: #FFCC70;
 }
+
+/* .border{
+  border: 1px solid;
+  border-radius: 0.3rem;
+} */
 
 html {
   scroll-behavior: smooth;

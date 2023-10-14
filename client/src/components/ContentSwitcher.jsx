@@ -17,7 +17,7 @@ const ContentSwitcher = () => {
   const [OpenDeleteModal, setOpenDeleteModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
 
-  const contentValue = (newValue) => {
+  const updateContent = (newValue) => {
     setContent(newValue);
   };
 
@@ -29,12 +29,12 @@ const ContentSwitcher = () => {
 
     if (selectedButton) {
       if (selectedButton.editedContent) {
-        contentValue(selectedButton.editedContent);
+        updateContent(selectedButton.editedContent);
       } else {
-        contentValue(selectedButton.content);
+        updateContent(selectedButton.content);
       }
     } else {
-      contentValue("Default Content");
+      updateContent("Default Content");
     }
     console.log(buttonKey);
   };
@@ -52,7 +52,7 @@ const ContentSwitcher = () => {
   const addNewButton = () => {
     if (newButtonName) {
       setButtonCount(buttonCount + 1);
-      contentValue("Default Content");
+      updateContent("Default Content");
 
       const newButton = {
         key: buttonCount + 1,
@@ -75,14 +75,14 @@ const ContentSwitcher = () => {
       setData({ ...data, buttons: updatedButtons });
       setButtonCount(buttonCount - 1);
       setActiveButton(null);
-      contentValue("Default Content");
+      updateContent("Default Content");
       deleteButtonConfirmation();
       setOpenDeleteModal(false);
     }
   };
 
   const editContent = () => {
-    // contentValue(newContent);
+    // updateContent(newContent);
     const updatedButtons = data.buttons.map((button) => {
       if (button.key === activeButton) {
         return { ...button, editedContent: newContent };

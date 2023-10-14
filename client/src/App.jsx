@@ -7,6 +7,7 @@ import { ResetPassword } from './pages/ResetPassword'
 import ResetConfirmation from './pages/ResetConfirmation'
 import Verify from './pages/Verfify'
 import LecturerProfile from './pages/LecturerProfile'
+import Admin from './pages/Admin'
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
         <Route path="/resetconfirmation" element={<ResetConfirmation />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/lecturerprofile" element={<LecturerProfile />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   )
