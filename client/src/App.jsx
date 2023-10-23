@@ -10,6 +10,7 @@ import LecturerProfile from './pages/LecturerProfile'
 import Admin from './pages/Admin'
 
 export const App = () => {
+  
   return (
     <Router>
       <Routes>

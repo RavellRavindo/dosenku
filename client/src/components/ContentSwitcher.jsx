@@ -100,7 +100,7 @@ const ContentSwitcher = () => {
       buttons: [
         {
           key: 0,
-          buttonName: "About Me",
+          buttonName: "About",
           content: "",
         },
       ],
