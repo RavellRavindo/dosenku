@@ -1,7 +1,7 @@
 import React from 'react'
-import LecturerNav from '../components/LecturerNav'
-import LecturerList from '../components/LecturerList';
-import Footer from '../components/Footer';
+import LecturerNav from '../../template-1/components/LecturerNav'
+import LecturerList from '../../template-1/components/LecturerList';
+import Footer from '../../template-1/components/Footer';
 
 const Admin = () => {
   return (
