@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const navigation = [{ name: "DosenKu", href: "#", current: true }];
+const navigation = [{ name: "Welcome Back, Guest", href: "#", current: true }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -10,7 +10,7 @@ function classNames(...classes) {
 
 export const NavDashboard = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-100">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -27,14 +27,14 @@ export const NavDashboard = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  {/* <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? "primaryColor font-semibold text-2xl"
+                            ? " font-semibold text-2xl"
                             : ""
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -42,7 +42,7 @@ export const NavDashboard = () => {
                         {item.name}
                       </a>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="flex items-center border rounded-lg mr-10 sm:mr-0">
@@ -83,20 +83,7 @@ export const NavDashboard = () => {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            My Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Edit Profile
+                            My Website
                           </a>
                         )}
                       </Menu.Item>
@@ -121,7 +108,7 @@ export const NavDashboard = () => {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
+            {/* <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
@@ -138,7 +125,7 @@ export const NavDashboard = () => {
                   {item.name}
                 </Disclosure.Button>
               ))}
-            </div>
+            </div> */}
           </Disclosure.Panel>
         </>
       )}
