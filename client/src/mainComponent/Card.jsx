@@ -12,7 +12,7 @@ const Card = ({ title, color, imageUrl }) => {
           src={imageUrl} // Update the path to your image
           alt="Card Image"
           className="w-16 h-16 rounded-full mr-4"
-          onClick={test}y
+          onClick={test}
         />
         <div>
           <p className="text-sm text-gray-700">{title}</p>

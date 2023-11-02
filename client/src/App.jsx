@@ -8,8 +8,7 @@ import ResetConfirmation from './template-1/pages/ResetConfirmation'
 import Verify from './template-1/pages/Verfify'
 import LecturerProfile from './template-1/pages/LecturerProfile'
 import Admin from './template-1/pages/Admin'
-import MainContent from './mainComponent/MainContent'
-import Dashboard from './mainComponent/Dashboard'
+import Dashboard from './Dashboard'
 
 export const App = () => {
   
