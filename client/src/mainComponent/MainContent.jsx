@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Card from "./Card";
 import img1 from "../images/img1.jpg";
 import img2 from "../images/img2.jpg";
 
 const MainContent = () => {
   const cards = [
-    { title: "Example website 1", color: "bg-blue-200", imageUrl: img1 },
+    {
+      title: "Example website 1",
+      color: "bg-blue-200",
+      imageUrl: img1,
+      link: "editabletag",
+    },
     { title: "Example website 2", color: "", imageUrl: img1 },
     { title: "Example website 3", color: "", imageUrl: img2 },
     { title: "Empty website", color: "bg-pink-200", imageUrl: img1 },
@@ -39,7 +45,7 @@ const MainContent = () => {
     { title: "Empty website", color: "bg-pink-200", imageUrl: img1 },
   ];
 
-  const cardsPerPage = 12;
+  const cardsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -55,12 +61,13 @@ const MainContent = () => {
       <h1 className="text-2xl font-semibold mb-4">Website Template</h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {currentCards.map((card, index) => (
-          <Card
-            key={index}
-            title={card.title}
-            color={card.color}
-            imageUrl={card.imageUrl}
-          />
+          <Link to={card.link} key={index}>
+            <Card
+              title={card.title}
+              color={card.color}
+              imageUrl={card.imageUrl}
+            />
+          </Link>
         ))}
       </div>
       <div className="mt-4 text-center">
@@ -81,7 +88,7 @@ const MainContent = () => {
             .map((_, index) => (
               <li
                 key={index}
-                className={`px-3 py-2 rounded-md cursor-pointer ${
+                className={`px-3 py-2 rounded-md cursor-pointer  transition-opacity duration-300 ease-in-out  ${
                   index + 1 === currentPage
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200"

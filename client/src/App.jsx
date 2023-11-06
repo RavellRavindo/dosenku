@@ -1,5 +1,4 @@
 import React from 'react'
-import { Home } from './Home'
 import { BrowserRouter as Router, Routes , Route} from 'react-router-dom'
 import { Signup } from './template-1/pages/auth/Signup'
 import { Login } from './template-1/pages/auth/Login'
@@ -9,6 +8,7 @@ import Verify from './template-1/pages/Verfify'
 import LecturerProfile from './template-1/pages/LecturerProfile'
 import Admin from './template-1/pages/Admin'
 import Dashboard from './Dashboard'
+import EditableTag from './template-2/EditableTag'
 
 export const App = () => {
   
@@ -23,6 +23,7 @@ export const App = () => {
         <Route path="/verify" element={<Verify />} />
         <Route path="/lecturerprofile" element={<LecturerProfile />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/editabletag" element={<EditableTag/>} />
       </Routes>
     </Router>
   )

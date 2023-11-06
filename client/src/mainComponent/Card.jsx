@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ title, color, imageUrl }) => {
+const Card = ({ title, color, imageUrl}) => {
   const test = () => {
     console.log(imageUrl);
   };

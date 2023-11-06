@@ -49,7 +49,7 @@ export const NavDashboard = () => {
                 <input
                   className="px-4 py-2 rounded-lg focus:outline-none focus:ring w-5/6 sm:w-full"
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Cari template..."
                 />
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
